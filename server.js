@@ -178,6 +178,10 @@ app.post("/paypal/create-order", async (req, res) => {
       }
     );
     const order = await response.json();
+    console.log("PayPal create-order response:", JSON.stringify(order));
+    if (!order.id) {
+      return res.status(500).json({ error: order.message || order.error_description || "PayPal order creation failed" });
+    }
     res.json({ id: order.id });
   } catch (err) {
     console.error("PayPal create error:", err);

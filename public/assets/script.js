@@ -58,6 +58,10 @@ if (typeof paypal !== "undefined") {
     createOrder: async () => {
       const res  = await fetch("/paypal/create-order", { method: "POST" });
       const data = await res.json();
+      if (!data.id) {
+        console.error("PayPal create-order error:", data.error);
+        throw new Error(data.error || "PayPal order creation failed");
+      }
       return data.id;
     },
     onApprove: async (data) => {
