@@ -9,6 +9,9 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Render imposta automaticamente RENDER_EXTERNAL_URL
+const APP_URL = (process.env.APP_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000").replace(/\/$/, "");
+
 // ─── Nodemailer transporter ───────────────────────────────────────────────────
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
@@ -121,7 +124,6 @@ app.post("/create-stripe-session", async (req, res) => {
             product_data: {
               name: "Patente Facile — Ebook",
               description: "I top trucchi per passare l'esame della patente",
-              images: [`${process.env.APP_URL}/assets/cover-preview.jpg`],
             },
             unit_amount: parseInt(process.env.EBOOK_PRICE_EUR) || 699,
           },
@@ -129,8 +131,8 @@ app.post("/create-stripe-session", async (req, res) => {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.APP_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.APP_URL}/cancel.html`,
+      success_url: `${APP_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${APP_URL}/cancel.html`,
       billing_address_collection: "auto",
       locale: "it",
     });
@@ -169,8 +171,8 @@ app.post("/paypal/create-order", async (req, res) => {
             locale: "it-IT",
             shipping_preference: "NO_SHIPPING",
             user_action: "PAY_NOW",
-            return_url: `${process.env.APP_URL}/success.html`,
-            cancel_url: `${process.env.APP_URL}/cancel.html`,
+            return_url: `${APP_URL}/success.html`,
+            cancel_url: `${APP_URL}/cancel.html`,
           },
         }),
       }
