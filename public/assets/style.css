@@ -80,6 +80,7 @@ body {
   letter-spacing: 0.12em;
   color: var(--gold2);
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .section-title {
@@ -89,7 +90,11 @@ body {
   letter-spacing: -0.03em;
   margin-bottom: 48px;
   color: var(--dark);
+  text-align: center;
 }
+
+.solution-text .section-label,
+.solution-text .section-title { text-align: left; }
 
 /* ═══════════════════════ HERO ════════════════════════════ */
 .hero {
@@ -757,9 +762,6 @@ body {
 
 .pay-arrow { margin-left: auto; color: var(--muted); font-size: 1.4rem; }
 
-.paypal-wrap { cursor: default; }
-.paypal-wrap:hover { border-color: #0070ba; }
-
 .modal-trust {
   text-align: center;
   color: var(--muted);
@@ -789,11 +791,21 @@ body {
   .section { padding: 60px 0; }
   .hero { padding: 60px 0 80px; }
   .hero h1 { font-size: 1.9rem; }
+  .hero-text { text-align: center; }
+  .hero-sub { max-width: 100%; }
+  .hero-cta { align-items: center; }
+  .cta-sub { justify-content: center; gap: 10px; }
   .chapters-grid { grid-template-columns: 1fr; }
   .footer-content { flex-direction: column; }
   .footer-links { align-items: flex-start; }
-  .btn-xl { font-size: 1rem; padding: 16px 24px; }
-  .cta-sub { gap: 10px; }
+  .btn-xl { font-size: 1rem; padding: 16px 24px; width: 100%; }
+  .btn-lg { width: 100%; }
   .proof-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .modal { padding: 28px 20px; }
+  .pricing-left { padding: 28px 20px; }
+  .pricing-right { padding: 28px 20px; }
+  .guarantee-box { padding: 28px 20px; }
+  .solution-text .section-label,
+  .solution-text .section-title { text-align: center; }
+  .solution-text .btn-lg { display: block; margin: 0 auto; }
 }

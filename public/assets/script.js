@@ -45,44 +45,6 @@ document.getElementById("stripePayBtn").addEventListener("click", async () => {
   }
 });
 
-// ─── PayPal ───────────────────────────────────────────────
-if (typeof paypal !== "undefined") {
-  paypal.Buttons({
-    style: {
-      layout: "horizontal",
-      color:  "gold",
-      shape:  "rect",
-      label:  "pay",
-      height: 48,
-    },
-    createOrder: async () => {
-      const res  = await fetch("/paypal/create-order", { method: "POST" });
-      const data = await res.json();
-      if (!data.id) {
-        console.error("PayPal create-order error:", data.error);
-        throw new Error(data.error || "PayPal order creation failed");
-      }
-      return data.id;
-    },
-    onApprove: async (data) => {
-      const res  = await fetch("/paypal/capture-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderID: data.orderID }),
-      });
-      const result = await res.json();
-      if (result.success) {
-        window.location.href = "/success.html";
-      } else {
-        alert("Pagamento non completato. Riprova.");
-      }
-    },
-    onError: () => {
-      alert("Si è verificato un errore con PayPal. Riprova o usa la carta.");
-    },
-  }).render("#paypal-modal-btn-container");
-}
-
 // ─── FAQ accordion ────────────────────────────────────────
 document.querySelectorAll(".faq-q").forEach((btn) => {
   btn.addEventListener("click", () => {
