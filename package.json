@@ -1,0 +1,21 @@
+{
+  "name": "patente-ebook",
+  "version": "1.0.0",
+  "description": "Sito vendita ebook patente",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "stripe": "^14.21.0",
+    "nodemailer": "^6.9.9",
+    "dotenv": "^16.4.1",
+    "uuid": "^9.0.1",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
