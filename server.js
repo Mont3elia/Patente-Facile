@@ -24,11 +24,10 @@ const transporter = nodemailer.createTransport({
 });
 
 async function sendDownloadEmail(toEmail, toName) {
-  const downloadUrl = process.env.EBOOK_DOWNLOAD_URL;
   await transporter.sendMail({
     from: process.env.EMAIL_FROM,
     to: toEmail,
-    subject: "🎉 Il tuo ebook Patente Facile è pronto!",
+    subject: "✅ Pagamento ricevuto — Patente Facile",
     html: `
       <!DOCTYPE html>
       <html lang="it">
@@ -43,7 +42,6 @@ async function sendDownloadEmail(toEmail, toName) {
           .body { padding: 40px 30px; }
           .body h2 { color: #0A0E1A; font-size: 22px; margin-top: 0; }
           .body p { color: #555; line-height: 1.7; }
-          .btn { display: inline-block; background: #F5C518; color: #0A0E1A; font-weight: 700; font-size: 16px; padding: 16px 36px; border-radius: 8px; text-decoration: none; margin: 20px 0; }
           .note { background: #f8f9fa; border-left: 4px solid #F5C518; padding: 16px 20px; border-radius: 4px; margin: 24px 0; }
           .note p { margin: 0; color: #555; font-size: 14px; }
           .footer { background: #f4f4f4; padding: 24px 30px; text-align: center; }
@@ -57,20 +55,16 @@ async function sendDownloadEmail(toEmail, toName) {
             <p>Grazie per il tuo acquisto!</p>
           </div>
           <div class="body">
-            <h2>Ciao ${toName || ""}! Il tuo ebook ti aspetta 👇</h2>
-            <p>Ottima scelta! Hai appena fatto il primo passo per passare l'esame della patente <strong>al primo tentativo</strong>. Il tuo ebook è pronto da scaricare.</p>
-            <div style="text-align:center;">
-              <a href="${downloadUrl}" class="btn">📥 Scarica il tuo Ebook ora</a>
-            </div>
+            <h2>Ciao ${toName || ""}! Pagamento confermato 🎉</h2>
+            <p>Abbiamo ricevuto il tuo pagamento. Il tuo ebook <strong>Patente Facile</strong> ti verrà inviato su questa email <strong>entro poche ore</strong>.</p>
             <div class="note">
-              <p>⚠️ <strong>Conserva questa email</strong> — il link potrebbe scadere. Scarica subito il PDF e salvalo sul tuo telefono o computer.</p>
+              <p>📬 <strong>Controlla questa casella</strong> — riceverai a breve una seconda email con il PDF allegato. Se non la vedi entro 24 ore, controlla anche la cartella spam o scrivici a <a href="mailto:patentefacileitalia@libero.it">patentefacileitalia@libero.it</a>.</p>
             </div>
-            <p>Hai domande o problemi? Rispondi direttamente a questa email, ti aiutiamo entro 24 ore.</p>
             <p>In bocca al lupo per l'esame! 🍀</p>
             <p style="color:#0A0E1A; font-weight:600;">Il team di Patente Facile</p>
           </div>
           <div class="footer">
-            <p>© 2024 Patente Facile · Hai ricevuto questa email perché hai acquistato il nostro ebook.</p>
+            <p>© 2025 Patente Facile · Hai ricevuto questa email perché hai acquistato il nostro ebook.</p>
           </div>
         </div>
       </body>
